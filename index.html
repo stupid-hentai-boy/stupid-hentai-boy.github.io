@@ -83,11 +83,88 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="1-动态多维数组的创建"><a href="#1-动态多维数组的创建" class="headerlink" title="1.动态多维数组的创建"></a>1.动态多维数组的创建</h2><p>动态多维数组的创建可以节约空间， 避免不必要的空间浪费。<br>例子：<br>用C语言创建一个二维数组</p>
+<pre><code>// 用数组指针
+//方法一
+char (*a)[N];//指向一个含有N个元素的一维数组的指针
+a = (char (*)[N])malloc(sizeof(char [N]) * m); // 给指针扩容
+free(a);
+
+//方法二
+char **a;
+a = (char**)malloc(sizeof(char*) * m);
+for(int i = 0; i &lt; m; i++)
+    a[i] = (char*)malloc(sizeof(int*)*N)
+for(int j = 0; j &lt; m; j++)
+    free(a[i]);
+free(a);
+
+方法三
+char **a;
+a = (char**)malloc(sizeof(char*) * m);
+a[0] = (char*)malloc(sizeof(char) * m * n) // 一次性开辟所有空间
+for(int i = 1; i &lt; m; i++)
+    a[i] = a[i - 1] + n；
+free(a[0]);
+free(a);
+
+//运用指针数组
+//方法一
+char* a[M];
+for(int i = 0; i &lt; M; i++)
+    a[i] = malloc(sizeof(char) * n);
+for(int i = 0; i &lt; M; i++)
+    free(a[i]);
+//方法二
+char* a[M];
+a[0] = (char*)malloc(sizeof(char) * M * n);
+for(int i = 1; i &lt; M; i++)
+    a[i] = a[i - 1] + n;
+free(a[0]);</code></pre><p>用C++</p>
+<pre><code>//方法一
+char (*a)[N];
+a = new char[m][N];
+delete[] a;
+//方法二
+cin &gt;&gt; n;
+int **a = NULL;
+a = new int*[n];
+for (int i = 0; i &lt; n; i++)
+    a[i] = new int[4];
+for(int i = 0; i &lt; n; i++)
+    delete[] a[i];
+delete[] a;
+//指针数组的内存分配和释放  
+//方法一  
+char **a;  
+a = new char* [m];  
+a[0] = new char[m * n];//一次性分配所有空间  
+for(int i=1; i&lt;m; i++)  
+    a[i] = a[i-1] + n;//分配每个指针所指向的数组  
+
+delete[] a[0];  
+delete[] a;   
+
+//方法二  
+char* a[M];//指针的数组  
+for(int i=0; i&lt;M; i++)  
+   a[i] = new char[n];  
+
+for(i=0; i&lt;M; i++)  
+       delete[] a[i];   
+
+//方法三  
+char* a[M];//指针的数组  
+a[0] = new char[M*n];  
+for(int i=1; i&lt;M; i++)  
+    a[i] = a[i-1] + n;  
+
+delete[] a[0];  </code></pre><p>如果是三维、四维和二维一样也就一层一层的创建，把房间一个一个填满东西就行。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/22/%E5%8A%A8%E6%80%81%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84/" data-id="ck3aay3gl0000n8ur1pkw4pcz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/22/%E5%8A%A8%E6%80%81%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84/" data-id="ck3b3s8jp0001jgur5z0wa6zy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/09/%E7%AC%AC%E4%B8%89%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3aay3gp0001n8urahlgg9zc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/09/%E7%AC%AC%E4%B8%89%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3b3s8js0003jgur2f764lot" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li></ul>
@@ -172,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3aay3gu0004n8ur76lfb3kk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/07/%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3b3s8jt0004jgurdtt83j3n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -210,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3aay3gr0002n8ur5rc652t3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3b3s8jl0000jgur6fnabz8n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%AC%E5%91%8A/" rel="tag">公告</a></li></ul>
