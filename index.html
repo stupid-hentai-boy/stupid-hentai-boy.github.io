@@ -61,6 +61,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-对串的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/23/%E5%AF%B9%E4%B8%B2%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2019-11-23T05:20:59.000Z" itemprop="datePublished">2019-11-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/23/%E5%AF%B9%E4%B8%B2%E7%9A%84%E5%AD%A6%E4%B9%A0/">对串的学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="今天对串进行了简单的学习，把一些我觉得重要的东西写一写。"><a href="#今天对串进行了简单的学习，把一些我觉得重要的东西写一写。" class="headerlink" title="今天对串进行了简单的学习，把一些我觉得重要的东西写一写。"></a>今天对串进行了简单的学习，把一些我觉得重要的东西写一写。</h2><hr>
+<p>串的index操作</p>
+<p>index(S, T, pos):<br>串S和串T存在，T是非空串, 1 &lt;=pos&lt;=StrLength(S)<br>若主串中含有和T相同的子串, 则返回它在主串S中第一次出现的位置， 否则返回0。</p>
+<pre><code>int Index(String S,, String T, int pos)  
+{  
+int n, m, i;  
+String sub;  
+if (pos &gt; 0)  
+{
+    n = StrLength(S);
+    m = StrLength(T);
+    i  = pos;
+    while(i &lt;= n-m+1)
+    {
+        SubString(sub, S, i, m);/* 取主串第i个位置，长度为T的子串给sub*/
+        if(StrCompare(sub, T) != 0)
+            ++i;
+        else
+        return i;
+    }
+}
+    return 0;
+}</code></pre><blockquote>
+<p>串的模式匹配-KMP算法</p>
+</blockquote>
+<p>KMP算法是利用了串的前缀和后缀来减少没必要的回溯，举个例子:  </p>
+<pre><code>主串：abcabxabx
+子串：abcabc
+当子串c与主串x不匹配但是c前面和x前面都拥有后缀ab与前缀ab, 所以下一次用子串的前缀ab匹配主串的后缀ab即可，这样就可以大大减少回溯，节省时间。</code></pre><p>其实就是算出next[j]数组的值问题就解决了<br>算法如下（神奇的五行代码）</p>
+<pre><code>int GetNext(char ch[],int cLen,int next[]) {
+next[1] = 0;
+int i = 1,j = 0;
+while(i&lt;=cLen){
+    if(j==0||ch[i]==ch[j]) next[++i] = ++j;
+    else j = next[j];
+}</code></pre><p>}<br>看这个视频挺好<br><a href="https://www.bilibili.com/video/av3246487/" target="_blank" rel="noopener">https://www.bilibili.com/video/av3246487/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/23/%E5%AF%B9%E4%B8%B2%E7%9A%84%E5%AD%A6%E4%B9%A0/" data-id="ck3d0t0td0000e8ur2gfn1viv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-动态多维数组" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/11/22/%E5%8A%A8%E6%80%81%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84/" class="article-date">
@@ -164,7 +236,7 @@ delete[] a[0];  </code></pre><p>如果是三维、四维和二维一样也就一
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/22/%E5%8A%A8%E6%80%81%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84/" data-id="ck3b3s8jp0001jgur5z0wa6zy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/22/%E5%8A%A8%E6%80%81%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84/" data-id="ck3d0t0tj0001e8ur4z5lhwx0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -207,7 +279,7 @@ delete[] a[0];  </code></pre><p>如果是三维、四维和二维一样也就一
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/09/%E7%AC%AC%E4%B8%89%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3b3s8js0003jgur2f764lot" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/09/%E7%AC%AC%E4%B8%89%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3d0t0tl0002e8ur02ah4r7o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li></ul>
@@ -249,7 +321,7 @@ delete[] a[0];  </code></pre><p>如果是三维、四维和二维一样也就一
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3b3s8jt0004jgurdtt83j3n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/07/%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3d0t0tr0005e8urber62d3o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -287,7 +359,7 @@ delete[] a[0];  </code></pre><p>如果是三维、四维和二维一样也就一
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3b3s8jl0000jgur6fnabz8n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%86%A8%E6%86%A8%E5%8D%9A%E5%AE%A2/" data-id="ck3d0t0tn0003e8ur54mvhv9o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%AC%E5%91%8A/" rel="tag">公告</a></li></ul>
@@ -342,6 +414,10 @@ delete[] a[0];  </code></pre><p>如果是三维、四维和二维一样也就一
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/11/23/%E5%AF%B9%E4%B8%B2%E7%9A%84%E5%AD%A6%E4%B9%A0/">对串的学习</a>
+          </li>
         
           <li>
             <a href="/2019/11/22/%E5%8A%A8%E6%80%81%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84/">动态多维数组</a>
